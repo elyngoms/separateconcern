@@ -44,13 +44,7 @@ function UserActions(props) {
   return <button onClick={handleOnClick}> Change Color React</button>;
 }
 function toggle(color) {
-  if (color === "blue") {
-    return "red";
-  } else if (color === "red") {
-    return "green";
-  } else if (color === "green") {
-    return "blue";
-  }
+  return color === "blue" ? "red" : color === "red" ? "green" : "blue";
 }
 
 function DisplayMessage(props) {
