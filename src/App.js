@@ -23,7 +23,7 @@ function App() {
       {/* this component has 2 children that display a message and a clock*/}
       <DisplayMessage color={color} />
       <Clock />
-      <p>{count}</p>
+      <CounterDisplay count={count} />
       <UserActions
         setColor={setColor}
         setCount={setCount}
@@ -32,6 +32,9 @@ function App() {
       />
     </div>
   );
+}
+function CounterDisplay(props) {
+  return <p>{props.count}</p>;
 }
 function UserActions(props) {
   return (
