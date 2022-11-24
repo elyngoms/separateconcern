@@ -8,19 +8,26 @@ function App() {
   const [count, setCount] = React.useState(
     JSON.parse(localStorage.getItem("count")) || 0
   );
+  const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+
   console.log(color);
   console.log(count);
 
   React.useEffect(() => {
     sessionStorage.setItem("color", JSON.stringify(color));
     localStorage.setItem("count", JSON.stringify(count));
+    const interval = setInterval(
+      () => setTime(new Date().toLocaleTimeString()),
+      2000
+    );
+    return () => clearInterval(interval);
   }, [color, count]);
 
   return (
     <div>
       {/* this component has 2 children that display a message and a clock*/}
       <DisplayMessage color={color} />
-      <Clock time={new Date().toLocaleTimeString()} />
+      <Clock time={time} />
       <p>{count}</p>
       <button
         onClick={() => {
