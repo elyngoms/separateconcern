@@ -24,15 +24,25 @@ function App() {
       <DisplayMessage color={color} />
       <Clock />
       <p>{count}</p>
-      <button
-        onClick={() => {
-          setColor(toggle(color));
-          setCount(count + 1);
-        }}
-      >
-        Change Color React
-      </button>
+      <UserActions
+        setColor={setColor}
+        setCount={setCount}
+        count={count}
+        color={color}
+      />
     </div>
+  );
+}
+function UserActions(props) {
+  return (
+    <button
+      onClick={() => {
+        props.setColor(toggle(props.color));
+        props.setCount(props.count + 1);
+      }}
+    >
+      Change Color React
+    </button>
   );
 }
 function toggle(color) {
