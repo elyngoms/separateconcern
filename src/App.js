@@ -8,7 +8,7 @@ function App() {
   const [count, setCount] = React.useState(
     JSON.parse(localStorage.getItem("count")) || 0
   );
-  const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+  //const [time, setTime] = React.useState(new Date().toLocaleTimeString());
 
   console.log(color);
   console.log(count);
@@ -16,18 +16,13 @@ function App() {
   React.useEffect(() => {
     sessionStorage.setItem("color", JSON.stringify(color));
     localStorage.setItem("count", JSON.stringify(count));
-    const interval = setInterval(
-      () => setTime(new Date().toLocaleTimeString()),
-      2000
-    );
-    return () => clearInterval(interval);
   }, [color, count]);
 
   return (
     <div>
       {/* this component has 2 children that display a message and a clock*/}
       <DisplayMessage color={color} />
-      <Clock time={time} />
+      <Clock />
       <p>{count}</p>
       <button
         onClick={() => {
@@ -54,8 +49,17 @@ function DisplayMessage(props) {
   return <h1 style={{ color: props.color }}>Hello React World! </h1>;
 }
 
-function Clock(props) {
-  return <p> React Clock: {props.time} </p>;
+function Clock() {
+  const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+
+  React.useEffect(() => {
+    const interval = setInterval(
+      () => setTime(new Date().toLocaleTimeString()),
+      3000
+    );
+    return () => clearInterval(interval);
+  }, [time]);
+  return <p> React Clock: {time} </p>;
 }
 //const root = ReactDOM.createRoot(document.getElementById("root"));
 //root.render(<Main />); //first load
