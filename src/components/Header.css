@@ -1,0 +1,10 @@
+/* Specific styles for non
+active links */
+.link-inactive {
+color: blue;
+}
+/* Specific styles for active links */
+.link-active {
+color: green;
+background: orange;
+}
